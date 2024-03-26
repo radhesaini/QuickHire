@@ -1,0 +1,57 @@
+<div class="container">
+    <h1>Applications List
+    </h1>
+    <div class="modal fade" id="exampleModalToggle" aria-hidden="true" aria-labelledby="exampleModalToggleLabel" tabindex="-1">
+        <div class="modal-dialog modal-dialog-centered">
+          <div class="modal-content">
+            <div class="modal-header">
+              <h1 class="modal-title fs-5"  id="exampleModalToggleLabel" ata-dismiss="modal">Create Application</h1>
+              <button type="button" #closebutton class="btn-close" data-bs-dismiss="modal" aria-label="Close"></button>
+            </div>
+            <div class="modal-body">
+                <form [formGroup]="formData" (ngSubmit)="submit()">
+                    <input formControlName="name" type="text" class="form-control mb-2" placeholder="Name" required > 
+                    <input formControlName="email" type="email" class="form-control mb-2" placeholder="Email" required email="true">
+                    <input formControlName="dob" type="date" class="form-control mb-2" placeholder="Date Of Birth" required >
+                    <input formControlName="city" type="text" class="form-control mb-2" placeholder="City" >
+                    <input name="resume" type="file" class="form-control mb-2" placeholder="File"  (change)="getFileDetails($event)" required>
+                    <input name="additional_documents" type="file" ng-file-model="files"  (change)="getFileDetails($event)" class="form-control mb-2" placeholder="Files" required multiple>
+                    <input formControlName="phone" type="text" class="form-control mb-2" placeholder="Phone Number"  >
+                    <input formControlName="description" type="text" class="form-control mb-2" placeholder="Description"  >
+                    <!-- <div *ngFor="let file of myFiles">
+                        <div>*  {{file.name}} - {{file.type}} - {{file.size}}</div> 
+                      </div> -->
+                    <div class="modal-footer">
+                        <button type="submit" class="w-100 btn btn-lg btn-primary" >Submit</button>
+                    </div>
+                </form>
+            </div>
+          </div>
+        </div>
+      </div>
+      <button class="btn btn-dark" data-bs-target="#exampleModalToggle" data-bs-toggle="modal">Create Application</button>
+
+    <table class="table">
+      <thead>
+        <tr>
+          <th>Name</th>
+          <th>Description</th>
+          <th>City</th>
+          <th>Phone</th>
+          <th>Action</th>
+        </tr>
+      </thead>
+      <tbody>
+        <tr *ngFor="let application of applications" >
+          <td> <a [routerLink]="['/edit-application', application._id]"> {{ application.name }}</a></td>
+          <td>{{ application.description }}</td>
+          <td>{{ application.city }}</td>
+          <td>{{ application.phone }}</td>
+          <td><button class="btn btn-danger"  (click)="onDelete(application._id)">Delete</button></td>
+        </tr>
+      </tbody>
+    </table>
+    <!-- <embed src="http://localhost:5000/api/files/6600436afc93eed27e7e1f5f" type="">
+    <embed src="http://localhost:5000/api/files/66026bebe977b8b89eacfc7a" type=""> -->
+  </div>
+  

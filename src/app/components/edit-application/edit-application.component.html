@@ -1,0 +1,23 @@
+<div class="jumbotron vertical-center">
+    <div class="container">
+        <div class="form-signin">
+            <form [formGroup]="formData" (ngSubmit)="submit()">
+                <input formControlName="name" type="text" class="form-control mb-2" placeholder="Name" required > 
+                <input formControlName="email" type="email" class="form-control mb-2" placeholder="Email" required email="true">
+                <input formControlName="dob" type="datetime" class="form-control mb-2" placeholder="Date Of Birth" required >
+                <input formControlName="city" type="text" class="form-control mb-2" placeholder="City" >
+                <a [routerLink]="['/show-documents', resume]">View Resume</a>
+                <input name="resume" type="file" class="form-control mb-2" placeholder="File"  (change)="getFileDetails($event)" required>
+                <input name="additional_documents" type="file" ng-file-model="files"  (change)="getFileDetails($event)" class="form-control mb-2" placeholder="Files" required multiple>
+                <div *ngFor="let item of additional_documents">
+                    <a [routerLink]="['/show-documents', item]">View Additional Documents</a>
+                </div>    
+                <input formControlName="phone" type="text" class="form-control mb-2" placeholder="Phone Number"  >
+                <input formControlName="description" type="text" class="form-control mb-2" placeholder="Description"  >
+                <div class="modal-footer">
+                    <button type="submit" class="w-100 btn btn-lg btn-primary" >Submit</button>
+                </div>
+            </form>
+        </div>
+    </div>
+</div>

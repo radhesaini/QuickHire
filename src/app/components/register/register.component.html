@@ -1,0 +1,13 @@
+<main class="form-signin">
+    <div class="jumbotron vertical-center">
+        <div class="container">
+            <form [formGroup]="formData" (ngSubmit)="submit()">
+                <h1 class="h3 mb-3 fw-normal">Please register</h1>
+                <input formControlName="name" type="text" class="form-control mb-2" placeholder="Name" required > 
+                <input formControlName="email" type="email" class="form-control mb-2" placeholder="Email" required email="true">
+                <input formControlName="password" type="password" class="form-control mb-2" placeholder="Password" required autocomplete="on" >
+                <button type="submit" class="w-100 btn btn-lg btn-primary">Submit</button>
+            </form>
+        </div>
+    </div>
+</main>
